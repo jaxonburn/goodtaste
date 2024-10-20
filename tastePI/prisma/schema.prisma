@@ -11,5 +11,14 @@ model User {
   id        Int      @id @default(autoincrement())
   username      String
   email     String   @unique
+  playlists  Playlist[] @relation("UserPlaylists") 
   createdAt DateTime @default(now())
+}
+
+model Playlist {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  createdById    Int      // Foreign key reference to the User model
+  createdBy      User     @relation("UserPlaylists", fields: [createdById], references: [id]) 
 }
