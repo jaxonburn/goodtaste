@@ -1,0 +1,38 @@
+version: '3'
+services:
+  tastePI:
+    image: tastepi-backend
+    build:
+      context: ./tastePI     # Point to the tastePI folder for Dockerfile and code
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./tastePI:/usr/src/app    # Mount the tastePI folder for live updates (optional)
+      - /usr/src/app/node_modules
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: goodtaste_db
+      DATABASE_URL: postgres://postgres:password@db:5432/goodtaste_db   # PostgreSQL connection string
+    depends_on:
+      - db    # Ensure PostgreSQL service starts before tastePi
+    command: npm run dev
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: goodtaste_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:  # Add a health check to ensure PostgreSQL is ready
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
