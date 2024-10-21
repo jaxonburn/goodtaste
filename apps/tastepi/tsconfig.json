@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "moduleResolution": "node",
+    "lib": ["dom", "es2022"],
+    "experimentalDecorators": true,
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "typeRoots": ["node_modules/@types"],
+    "useDefineForClassFields": false,
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts"]
+}

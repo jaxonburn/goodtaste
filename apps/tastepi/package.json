@@ -1,0 +1,33 @@
+{
+  "name": "tastepi",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ./build/esbuild.js --dev",
+    "build:meta": "node ./build/esbuild.js --dev --meta",
+    "build:meta:prod": "node ./build/esbuild.js --meta",
+    "build:prod": "node ./build/esbuild.js",
+    "start": "node ./build/esbuild.js --dev --watch --run",
+    "start:ci": "node ./build/esbuild.js --run",
+    "start:prod": "node ./build/esbuild.js --watch --run"
+  },
+  "devDependencies": {
+    "@es-exec/esbuild-plugin-serve": "^0.0.5",
+    "@eslint/js": "^9.13.0",
+    "@types/node": "^18.19.57",
+    "esbuild": "^0.20.2",
+    "eslint": "^9.13.0",
+    "globals": "^15.11.0",
+    "minimist": "^1.2.8",
+    "prettier": "^3.3.3",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^8.10.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "esbuild-plugin-pino": "^2.2.0",
+    "fastify": "^5.0.0",
+    "pino-pretty": "^11.3.0",
+    "zod": "^3.23.8"
+  }
+}
